@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+
+/* Tailwind v4 Theme Extension - Modern Green Color Palette */
+@theme {
+  /* Primary Emerald Colors */
+  --color-emerald-primary: #10b981;
+  --color-emerald-dark: #059669;
+  --color-emerald-light: #34d399;
+  --color-emerald-deep: #064e3b;
+
+  /* Background Colors */
+  --color-bg-light: #ffffff;
+  --color-bg-dark: #111827;
+
+  /* Surface Colors */
+  --color-surface-light: #f3f4f6;
+  --color-surface-dark: #1f2937;
+
+  /* Text Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+
+  /* Dark mode text */
+  --color-text-primary-dark: #f9fafb;
+  --color-text-secondary-dark: #d1d5db;
+
+  /* Font families */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* ---- Base Styles ---- */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-primary-dark);
+}
+
+/* ---- Typography ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* ---- Selection ---- */
+::selection {
+  background-color: var(--color-emerald-primary);
+  color: white;
+}
+
+/* ---- Scroll-Triggered Animations ---- */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fade-in-up.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.7s ease-out;
+}
+
+.fade-in.animate-in {
+  opacity: 1;
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scale-in.animate-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---- Focus States (Accessibility) ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-emerald-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Scrollbar (Webkit) ---- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-light);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-surface-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-emerald-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-emerald-dark);
+}
+
+/* ---- Form Placeholder Dark Mode ---- */
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #6b7280;
+}
