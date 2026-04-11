@@ -4,49 +4,29 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    {
-      name: 'GitHub',
-      icon: Github,
-      url: 'https://github.com/johngabriel',
-      ariaLabel: 'Visit my GitHub profile',
-      gradient: 'from-gray-700 to-gray-900',
-    },
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      url: 'https://linkedin.com/in/johngabrieldelicana',
-      ariaLabel: 'Visit my LinkedIn profile',
-      gradient: 'from-blue-500 to-blue-700',
-    },
-    {
-      name: 'Email',
-      icon: Mail,
-      url: 'mailto:johngabriel@example.com',
-      ariaLabel: 'Send me an email',
-      gradient: 'from-emerald-primary to-teal-500',
-    },
+    { name: 'GitHub',   icon: Github,   url: 'https://github.com/gabbyyygab',              gradient: 'from-gray-600 to-gray-800' },
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/in/johngabrieldelicana', gradient: 'from-blue-500 to-blue-700' },
+    { name: 'Email',    icon: Mail,     url: 'mailto:delicanagabriel1212@gmail.com',         gradient: 'from-emerald-primary to-teal-500' },
   ];
 
   return (
-    <footer className="relative bg-surface-light dark:bg-surface-dark border-t border-gray-200 dark:border-gray-700/60 overflow-hidden">
-      {/* Top gradient accent bar */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-emerald-primary/50 to-transparent" />
+    <footer className="relative bg-white dark:bg-bg-dark border-t border-gray-200/60 dark:border-gray-700/40 overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-emerald-primary/40 to-transparent" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-5">
-          {/* Name and Tagline */}
-          <div className="text-center md:text-left">
-            <p className="text-base font-bold text-text-primary dark:text-text-primary-dark mb-0.5">
-              <span className="bg-linear-to-r from-emerald-primary via-teal-400 to-cyan-400 bg-clip-text text-transparent">
-                John Gabriel M. Delicana
-              </span>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Centered content */}
+        <div className="flex flex-col items-center gap-5">
+          {/* Name */}
+          <div className="text-center">
+            <p className="text-lg font-bold bg-linear-to-r from-emerald-primary via-teal-400 to-cyan-400 bg-clip-text text-transparent mb-0.5">
+              John Gabriel M. Delicana
             </p>
             <p className="text-sm text-text-secondary dark:text-text-secondary-dark">
               Aspiring Full-Stack Web Developer
             </p>
           </div>
 
-          {/* Social Links */}
+          {/* Social */}
           <div className="flex items-center gap-3">
             {socialLinks.map((link) => {
               const Icon = link.icon;
@@ -56,21 +36,22 @@ export default function Footer() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={link.ariaLabel}
-                  className={`p-2 rounded-lg bg-linear-to-br ${link.gradient} text-white transition-all duration-300 hover:scale-110 hover:shadow-md`}
+                  aria-label={link.name}
+                  className={`w-9 h-9 bg-linear-to-br ${link.gradient} rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-md`}
                 >
-                  <Icon className="w-4.5 h-4.5" />
+                  <Icon className="w-4 h-4" />
                 </a>
               );
             })}
           </div>
-        </div>
 
-        {/* Copyright */}
-        <div className="mt-6 pt-5 border-t border-gray-200 dark:border-gray-700/60 text-center">
-          <p className="text-sm text-text-muted flex items-center justify-center gap-1">
+          {/* Divider */}
+          <div className="w-full max-w-xs h-px bg-gray-200/60 dark:bg-gray-700/40" />
+
+          {/* Copyright */}
+          <p className="text-sm text-text-muted flex items-center justify-center gap-1.5">
             &copy; {currentYear} John Gabriel M. Delicana. Made with{' '}
-            <Heart className="w-3.5 h-3.5 text-red-500 fill-current" /> and React
+            <Heart className="w-3.5 h-3.5 text-red-400 fill-current" /> and React
           </p>
         </div>
       </div>

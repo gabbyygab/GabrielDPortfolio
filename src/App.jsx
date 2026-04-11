@@ -5,7 +5,7 @@ import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Skills from './components/sections/Skills';
 import Projects from './components/sections/Projects';
-import Achievements from './components/sections/Achievements';
+import Education from './components/sections/Education';
 import Contact from './components/sections/Contact';
 
 function useScrollAnimations() {
@@ -15,7 +15,8 @@ function useScrollAnimations() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
+          } else {
+            entry.target.classList.remove('animate-in');
           }
         });
       },
@@ -24,7 +25,7 @@ function useScrollAnimations() {
 
     // Small delay to ensure DOM is painted before observing
     const timer = setTimeout(() => {
-      const targets = document.querySelectorAll('.fade-in-up, .fade-in, .scale-in');
+      const targets = document.querySelectorAll('.fade-in-up, .fade-in, .scale-in, .slide-in-left, .slide-in-right');
       targets.forEach((el) => observer.observe(el));
     }, 100);
 
@@ -45,7 +46,7 @@ export default function App() {
         <About />
         <Skills />
         <Projects />
-        <Achievements />
+        <Education />
         <Contact />
       </Layout>
     </ThemeProvider>

@@ -9,136 +9,141 @@ import {
   SiTailwindcss,
   SiGit,
   SiDocker,
-  SiUnity,
   SiFigma,
+  SiUnity,
 } from 'react-icons/si';
 import { FaJava, FaMobileAlt, FaDatabase, FaRobot } from 'react-icons/fa';
 import { TbApi, TbBrandCSharp } from 'react-icons/tb';
 import { MdOutlineDesignServices, MdGroups } from 'react-icons/md';
-import { Code2, Layers, Sparkles } from 'lucide-react';
+import { Code2, Layers, Sparkles, Wrench } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
 
 export default function Skills() {
   const skillCategories = [
     {
-      title: 'Programming Languages',
+      title: 'Languages',
       icon: Code2,
       gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
-      iconBg: 'from-emerald-500/20 to-teal-500/20',
+      glowColor: 'rgba(16,185,129,0.15)',
+      borderColor: 'rgba(16,185,129,0.3)',
       skills: [
-        { name: 'JavaScript', level: 95, icon: SiJavascript, color: '#F7DF1E' },
-        { name: 'Java', level: 90, icon: FaJava, color: '#ED8B00' },
-        { name: 'PHP', level: 85, icon: SiPhp, color: '#777BB4' },
-        { name: 'C#', level: 80, icon: TbBrandCSharp, color: '#68217A' },
-        { name: 'C++', level: 80, icon: SiCplusplus, color: '#00599C' },
+        { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E', bg: 'rgba(247,223,30,0.12)' },
+        { name: 'Java',       icon: FaJava,        color: '#ED8B00', bg: 'rgba(237,139,0,0.12)' },
+        { name: 'PHP',        icon: SiPhp,         color: '#777BB4', bg: 'rgba(119,123,180,0.12)' },
+        { name: 'C#',         icon: TbBrandCSharp,  color: '#9B59D0', bg: 'rgba(155,89,208,0.12)' },
+        { name: 'C++',        icon: SiCplusplus,   color: '#00599C', bg: 'rgba(0,89,156,0.12)' },
       ],
     },
     {
       title: 'Frameworks & Libraries',
       icon: Layers,
       gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
-      iconBg: 'from-violet-500/20 to-purple-500/20',
+      glowColor: 'rgba(139,92,246,0.15)',
+      borderColor: 'rgba(139,92,246,0.3)',
       skills: [
-        { name: 'React', level: 95, icon: SiReact, color: '#61DAFB' },
-        { name: 'Vue.js', level: 85, icon: SiVuedotjs, color: '#4FC08D' },
-        { name: 'Next.js', level: 85, icon: SiNextdotjs, color: '#' },
-        { name: 'Laravel', level: 80, icon: SiLaravel, color: '#FF2D20' },
-        { name: 'Tailwind CSS', level: 95, icon: SiTailwindcss, color: '#06B6D4' },
+        { name: 'React',        icon: SiReact,       color: '#61DAFB', bg: 'rgba(97,218,251,0.12)' },
+        { name: 'Next.js',      icon: SiNextdotjs,   color: '#e2e8f0', bg: 'rgba(226,232,240,0.08)' },
+        { name: 'Vue.js',       icon: SiVuedotjs,    color: '#4FC08D', bg: 'rgba(79,192,141,0.12)' },
+        { name: 'Laravel',      icon: SiLaravel,     color: '#FF2D20', bg: 'rgba(255,45,32,0.12)' },
+        { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4', bg: 'rgba(6,182,212,0.12)' },
       ],
     },
     {
       title: 'Specializations',
       icon: Sparkles,
       gradient: 'from-amber-500 via-orange-500 to-rose-500',
-      iconBg: 'from-amber-500/20 to-orange-500/20',
+      glowColor: 'rgba(245,158,11,0.15)',
+      borderColor: 'rgba(245,158,11,0.3)',
       skills: [
-        { name: 'Mobile Dev', level: 85, icon: FaMobileAlt, color: '#10b981' },
-        { name: 'Game Dev', level: 75, icon: SiUnity, color: '#' },
-        { name: 'AI Prompting', level: 90, icon: FaRobot, color: '#8B5CF6' },
-        { name: 'Database', level: 85, icon: FaDatabase, color: '#3B82F6' },
+        { name: 'Mobile Dev',   icon: FaMobileAlt, color: '#10b981', bg: 'rgba(16,185,129,0.12)' },
+        { name: 'Game Dev',     icon: SiUnity,     color: '#e2e8f0', bg: 'rgba(226,232,240,0.08)' },
+        { name: 'AI Prompting', icon: FaRobot,     color: '#8B5CF6', bg: 'rgba(139,92,246,0.12)' },
+        { name: 'Database',     icon: FaDatabase,  color: '#3B82F6', bg: 'rgba(59,130,246,0.12)' },
       ],
     },
   ];
 
-  const additionalTools = [
-    { name: 'Git', icon: SiGit, color: '#F05032' },
-    { name: 'Docker', icon: SiDocker, color: '#2496ED' },
-    { name: 'REST APIs', icon: TbApi, color: '#10b981' },
-    { name: 'Agile', icon: MdGroups, color: '#8B5CF6' },
-    { name: 'UI/UX', icon: SiFigma, color: '#F24E1E' },
-    { name: 'Responsive', icon: MdOutlineDesignServices, color: '#06B6D4' },
+  const tools = [
+    { name: 'Git',         icon: SiGit,                  color: '#F05032', bg: 'rgba(240,80,50,0.12)' },
+    { name: 'Docker',      icon: SiDocker,               color: '#2496ED', bg: 'rgba(36,150,237,0.12)' },
+    { name: 'REST APIs',   icon: TbApi,                  color: '#10b981', bg: 'rgba(16,185,129,0.12)' },
+    { name: 'Agile',       icon: MdGroups,               color: '#8B5CF6', bg: 'rgba(139,92,246,0.12)' },
+    { name: 'UI/UX',       icon: SiFigma,                color: '#F24E1E', bg: 'rgba(242,78,30,0.12)' },
+    { name: 'Responsive',  icon: MdOutlineDesignServices, color: '#06B6D4', bg: 'rgba(6,182,212,0.12)' },
   ];
 
   return (
     <section
       id="skills"
-      className="py-20 md:py-28 relative overflow-hidden bg-surface-light dark:bg-surface-dark"
+      className="py-16 md:py-20 relative overflow-hidden bg-surface-light dark:bg-surface-dark"
     >
-      {/* Background gradient blobs */}
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-linear-to-br from-emerald-primary/10 via-teal-400/5 to-transparent rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-linear-to-tr from-violet-500/10 via-purple-400/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-primary/6 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-violet-500/6 rounded-full blur-3xl" />
+        <div className="absolute inset-0 dot-grid opacity-[0.025] dark:opacity-[0.04]" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
+          eyebrow="What I Know"
           title="Technical Skills"
           subtitle="A comprehensive overview of my technical expertise and proficiencies"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12">
-          {skillCategories.map((category, categoryIndex) => {
+        {/* Skill Category Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 mb-10">
+          {skillCategories.map((category, ci) => {
             const CategoryIcon = category.icon;
             return (
               <div
-                key={categoryIndex}
-                className="fade-in-up"
-                style={{ transitionDelay: `${categoryIndex * 100}ms` }}
+                key={ci}
+                className={`group ${ci % 2 === 0 ? 'slide-in-left' : 'fade-in-up'}`}
+                style={{ transitionDelay: `${ci * 100}ms` }}
               >
-                <div className="group relative bg-white dark:bg-bg-dark rounded-2xl p-6 md:p-8 shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-700/60 hover:border-transparent h-full overflow-hidden">
-                  {/* Gradient border on hover */}
-                  <div className={`absolute inset-0 rounded-2xl bg-linear-to-br ${category.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm scale-[1.02]`} />
+                <div className="relative bg-white dark:bg-bg-dark rounded-2xl p-7 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-200/80 dark:border-gray-700/50 hover:border-transparent h-full overflow-hidden">
+                  {/* Hover glow */}
+                  <div
+                    className={`absolute inset-0 rounded-2xl bg-linear-to-br ${category.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm scale-[1.02]`}
+                  />
+                  {/* Top accent bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r ${category.gradient}`} />
 
-                  {/* Category Header */}
+                  {/* Header */}
                   <div className="flex items-center gap-3 mb-6">
-                    <div className={`w-11 h-11 bg-linear-to-br ${category.iconBg} rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
+                      style={{ background: `linear-gradient(135deg, ${category.glowColor}, ${category.glowColor})`, border: `1px solid ${category.borderColor}` }}
+                    >
                       <CategoryIcon className="w-5 h-5 text-emerald-primary" />
                     </div>
-                    <h3 className="text-lg font-bold text-text-primary dark:text-text-primary-dark leading-snug">
+                    <h3 className="text-lg font-bold text-text-primary dark:text-text-primary-dark">
                       {category.title}
                     </h3>
                   </div>
 
-                  {/* Skills as Pills */}
-                  <div className="space-y-3">
-                    {category.skills.map((skill, skillIndex) => {
+                  {/* Skills as pills */}
+                  <div className="flex flex-wrap gap-2.5">
+                    {category.skills.map((skill, si) => {
                       const SkillIcon = skill.icon;
                       return (
-                        <div key={skillIndex} className="group/skill">
-                          {/* Pill with icon */}
-                          <div className="flex items-center gap-3 mb-1.5">
-                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 shrink-0">
-                              <SkillIcon
-                                className="w-4 h-4 shrink-0"
-                                style={{ color: skill.color || 'currentColor' }}
-                              />
-                              <span className="text-sm font-semibold text-text-primary dark:text-text-primary-dark whitespace-nowrap">
-                                {skill.name}
-                              </span>
-                            </div>
-                            <span className="text-xs font-bold text-text-muted tabular-nums ml-auto">
-                              {skill.level}%
-                            </span>
-                          </div>
-
-                          {/* Progress bar with gradient */}
-                          <div className="h-2 bg-gray-200 dark:bg-gray-700/80 rounded-full overflow-hidden">
-                            <div
-                              className={`h-full bg-linear-to-r ${category.gradient} rounded-full transition-all duration-700 ease-out`}
-                              style={{ width: `${skill.level}%` }}
-                            />
-                          </div>
-                        </div>
+                        <span
+                          key={si}
+                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-semibold cursor-default transition-all duration-300 hover:scale-105 hover:shadow-md"
+                          style={{
+                            background: skill.bg,
+                            border: `1px solid ${skill.color}35`,
+                            color: 'inherit',
+                          }}
+                        >
+                          <SkillIcon
+                            className="w-3.5 h-3.5 shrink-0"
+                            style={{ color: skill.color }}
+                          />
+                          <span className="text-text-primary dark:text-text-primary-dark leading-none">
+                            {skill.name}
+                          </span>
+                        </span>
                       );
                     })}
                   </div>
@@ -148,26 +153,34 @@ export default function Skills() {
           })}
         </div>
 
-        {/* Additional Tools as Icon Pills */}
-        <div className="mt-14 text-center fade-in-up">
-          <p className="text-text-secondary dark:text-text-secondary-dark text-base md:text-lg mb-5">
-            Always learning and expanding my skill set with new technologies
-          </p>
+        {/* Tools & Practices */}
+        <div className="fade-in-up" style={{ transitionDelay: '300ms' }}>
+          {/* Header */}
+          <div className="flex items-center gap-3 justify-center mb-6">
+            <div className="h-px flex-1 max-w-16 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600" />
+            <div className="flex items-center gap-2">
+              <Wrench className="w-4 h-4 text-emerald-primary" />
+              <p className="text-sm font-semibold tracking-widest uppercase text-text-muted">
+                Tools &amp; Practices
+              </p>
+            </div>
+            <div className="h-px flex-1 max-w-16 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600" />
+          </div>
+
           <div className="flex flex-wrap justify-center gap-3">
-            {additionalTools.map((tool) => {
+            {tools.map((tool) => {
               const ToolIcon = tool.icon;
               return (
                 <span
                   key={tool.name}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-bg-dark rounded-full text-sm font-semibold shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-emerald-primary/50 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-default transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  style={{
+                    background: tool.bg,
+                    border: `1px solid ${tool.color}35`,
+                  }}
                 >
-                  <ToolIcon
-                    className="w-4 h-4 shrink-0"
-                    style={{ color: tool.color }}
-                  />
-                  <span className="text-text-primary dark:text-text-primary-dark">
-                    {tool.name}
-                  </span>
+                  <ToolIcon className="w-4 h-4 shrink-0" style={{ color: tool.color }} />
+                  <span className="text-text-primary dark:text-text-primary-dark">{tool.name}</span>
                 </span>
               );
             })}
