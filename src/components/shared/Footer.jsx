@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -49,9 +49,8 @@ export default function Footer() {
           <div className="w-full max-w-xs h-px bg-gray-200/60 dark:bg-gray-700/40" />
 
           {/* Copyright */}
-          <p className="text-sm text-text-muted flex items-center justify-center gap-1.5">
-            &copy; {currentYear} John Gabriel M. Delicana. Made with{' '}
-            <Heart className="w-3.5 h-3.5 text-red-400 fill-current" /> and React
+          <p className="text-sm text-text-muted">
+            &copy; {currentYear} John Gabriel M. Delicana. All rights reserved.
           </p>
         </div>
       </div>

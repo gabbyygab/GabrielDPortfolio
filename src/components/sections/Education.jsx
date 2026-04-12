@@ -1,4 +1,4 @@
-import { GraduationCap, BookOpen, School, Quote, Star, Globe } from 'lucide-react';
+import { GraduationCap, BookOpen, School, Quote, Star, Globe, Trophy, Medal } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
 
 export default function Education() {
@@ -12,6 +12,10 @@ export default function Education() {
       iconBg: 'from-emerald-500/15 to-teal-500/15',
       detail: null,
       current: false,
+      achievements: [
+        { icon: Trophy, label: 'Grade 1–5', desc: 'Top 1 of the Class' },
+        { icon: Star,   label: 'Grade 6',   desc: 'Valedictorian — With Highest Honors' },
+      ],
     },
     {
       icon: School,
@@ -22,6 +26,11 @@ export default function Education() {
       iconBg: 'from-violet-500/15 to-purple-500/15',
       detail: null,
       current: false,
+      achievements: [
+        { icon: Star, label: 'Grade 7–9',   desc: 'With Honors' },
+        { icon: Star, label: 'Grade 10',    desc: 'With High Honors' },
+        { icon: Star, label: 'Grade 11–12', desc: 'With High Honors' },
+      ],
     },
     {
       icon: GraduationCap,
@@ -32,6 +41,11 @@ export default function Education() {
       iconBg: 'from-amber-500/15 to-orange-500/15',
       detail: 'BS Information Technology — Major in Web and Mobile Development',
       current: true,
+      achievements: [
+        { icon: Star,  label: '1st Year',  desc: "Dean's Lister" },
+        { icon: Trophy, label: '3rd Year', desc: 'SCUAA 2026 Chess — Team Category Gold Medalist' },
+        { icon: Medal,  label: '3rd Year', desc: 'SCUAA 2026 Chess — Individual Board 1 Silver Medalist' },
+      ],
     },
   ];
 
@@ -201,6 +215,22 @@ export default function Education() {
                       <p className="text-xs text-text-secondary dark:text-text-secondary-dark mt-1.5 leading-relaxed">
                         {item.detail}
                       </p>
+                    )}
+
+                    {item.achievements && item.achievements.length > 0 && (
+                      <div className="mt-3 flex flex-col gap-1.5">
+                        {item.achievements.map(({ icon: AchIcon, label, desc }, ai) => (
+                          <div
+                            key={ai}
+                            className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs"
+                            style={{ background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.15)' }}
+                          >
+                            <AchIcon className="w-3 h-3 shrink-0 text-emerald-primary" />
+                            <span className="font-bold text-text-muted whitespace-nowrap">{label}</span>
+                            <span className="text-text-secondary dark:text-text-secondary-dark leading-tight">{desc}</span>
+                          </div>
+                        ))}
+                      </div>
                     )}
                   </div>
                 </div>

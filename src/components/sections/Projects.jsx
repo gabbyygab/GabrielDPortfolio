@@ -50,6 +50,7 @@ const PROJECTS = [
     description:
       'A comprehensive online platform management system built with a dynamic React frontend and a robust Firebase backend to streamline reservations and administrative workflows. The application delivers a seamless, real-time user experience featuring secure authentication, responsive data handling, and an intuitive interface for both clients and administrators. By centralizing schedule management and availability tracking into one accessible hub, it provides a scalable and reliable solution tailored for optimal operational control.',
     images: [booking1, booking2, booking3, booking4, booking5, booking6],
+    liveDemo: 'https://bookingnest.vercel.app/',
   },
   {
     id: 2,
@@ -92,6 +93,7 @@ const PROJECTS = [
     description:
       'A Unity-developed 2D game exploring mental wellness and cognitive resilience through engaging gameplay mechanics. MindOverMatter combines thoughtful game design with interactive challenges that encourage mindfulness, problem-solving, and emotional self-awareness. Developed as a creative capstone into game development, the project showcases proficiency in C# scripting, Unity physics, UI animation, and narrative-driven level design.',
     images: [mom1, mom2, mom3, mom4, mom5],
+    liveDemo: 'https://mind-over-matter-gd.vercel.app/',
   },
   {
     id: 5,
@@ -106,6 +108,7 @@ const PROJECTS = [
     description:
       'A comprehensive, unified web-based Enterprise Resource Planning (ERP) system custom-developed to streamline and centralize the core business operations of Sisidlan Sales Corporation. Designed as a robust capstone research project, the platform integrates various operational facets — inventory, sales, HR, and reporting — into a single, intuitive interface to enhance cross-departmental efficiency and enable real-time data management at scale.',
     images: [sis1, sis2, sis3, sis4],
+    liveDemo: 'https://sisidlan360.vercel.app/',
   },
 ];
 
@@ -328,11 +331,29 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Project number indicator */}
+              {/* Project number indicator + Live Demo */}
               <div className="mt-8 pt-6 border-t border-gray-200/60 dark:border-gray-700/40 flex items-center justify-between">
-                <span className="text-xs text-text-muted font-medium">
-                  Project {activeIdx + 1} of {PROJECTS.length}
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-text-muted font-medium">
+                    Project {activeIdx + 1} of {PROJECTS.length}
+                  </span>
+                  {project.liveDemo && (
+                    <a
+                      href={project.liveDemo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 hover:scale-105 hover:shadow-md"
+                      style={{
+                        background: `${project.accentColor}14`,
+                        border: `1px solid ${project.accentColor}50`,
+                        color: project.accentColor,
+                      }}
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      Live Demo
+                    </a>
+                  )}
+                </div>
                 <div className="flex gap-2">
                   <button
                     onClick={() => goTo(activeIdx - 1)}

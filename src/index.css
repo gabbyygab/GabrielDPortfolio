@@ -28,6 +28,12 @@
   --font-mono:    'JetBrains Mono', 'Courier New', monospace;
 }
 
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
 /* ── Base ───────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;

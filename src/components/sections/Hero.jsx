@@ -1,7 +1,59 @@
-import { ArrowRight, MapPin, Briefcase, Code2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
 import profileImage from '../../assets/GabPicture.jpg';
 
+const TYPING_PHRASES = [
+  'Aspiring Full-Stack Developer',
+  'Problem Solver',
+  'Chess Player',
+  'Logical Thinker',
+];
+
+const TYPE_SPEED   = 70;
+const DELETE_SPEED = 40;
+const PAUSE_AFTER  = 1600;
+const PAUSE_BEFORE = 400;
+
+function useTypingAnimation(phrases) {
+  const [displayed, setDisplayed] = useState('');
+  const [phraseIdx, setPhraseIdx] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const current = phrases[phraseIdx];
+
+    if (isPaused) {
+      const id = setTimeout(() => setIsPaused(false), isDeleting ? PAUSE_BEFORE : PAUSE_AFTER);
+      return () => clearTimeout(id);
+    }
+
+    if (!isDeleting && displayed === current) {
+      setIsPaused(true);
+      setIsDeleting(true);
+      return;
+    }
+
+    if (isDeleting && displayed === '') {
+      setIsPaused(true);
+      setIsDeleting(false);
+      setPhraseIdx((i) => (i + 1) % phrases.length);
+      return;
+    }
+
+    const id = setTimeout(() => {
+      setDisplayed(isDeleting ? current.slice(0, displayed.length - 1) : current.slice(0, displayed.length + 1));
+    }, isDeleting ? DELETE_SPEED : TYPE_SPEED);
+
+    return () => clearTimeout(id);
+  }, [displayed, phraseIdx, isDeleting, isPaused, phrases]);
+
+  return displayed;
+}
+
 export default function Hero() {
+  const typedText = useTypingAnimation(TYPING_PHRASES);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -9,12 +61,6 @@ export default function Hero() {
       window.scrollTo({ top, behavior: 'smooth' });
     }
   };
-
-  const badges = [
-    { icon: MapPin,    label: 'Location', value: 'Bulacan, Philippines' },
-    { icon: Briefcase, label: 'Status',   value: 'BSIT Student' },
-    { icon: Code2,     label: 'Projects', value: '5 Built' },
-  ];
 
   return (
     <section
@@ -56,12 +102,13 @@ export default function Hero() {
               <span className="text-text-primary dark:text-text-primary-dark">Delicana</span>
             </h1>
 
-            {/* Role */}
+            {/* Role — typing animation */}
             <p
               className="text-lg sm:text-xl text-text-secondary dark:text-text-secondary-dark font-medium mb-3 slide-in-left"
               style={{ transitionDelay: '150ms' }}
             >
-              Aspiring Full‑Stack Web Developer
+              <span>{typedText}</span>
+              <span className="inline-block w-0.5 h-5 bg-emerald-primary ml-0.5 align-middle animate-[blink_1s_step-end_infinite]" />
             </p>
 
             {/* Tagline */}
@@ -92,26 +139,6 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Info badges */}
-            <div
-              className="flex flex-wrap justify-center lg:justify-start gap-3 slide-in-left"
-              style={{ transitionDelay: '330ms' }}
-            >
-              {badges.map(({ icon: Icon, label, value }) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-2.5 px-4 py-2.5 bg-surface-light dark:bg-surface-dark border border-gray-200/80 dark:border-gray-700/50 rounded-xl hover:border-emerald-primary/40 transition-colors duration-200"
-                >
-                  <div className="w-7 h-7 rounded-lg bg-emerald-primary/10 flex items-center justify-center shrink-0">
-                    <Icon className="w-3.5 h-3.5 text-emerald-primary" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[10px] font-medium text-text-muted uppercase tracking-wide leading-none mb-0.5">{label}</p>
-                    <p className="text-xs font-semibold text-text-primary dark:text-text-primary-dark">{value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── Right: Profile image ── */}
