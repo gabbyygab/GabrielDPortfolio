@@ -17,6 +17,8 @@ import { TbApi, TbBrandCSharp } from 'react-icons/tb';
 import { MdOutlineDesignServices, MdGroups } from 'react-icons/md';
 import { Code2, Layers, Sparkles, Wrench } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
+import SpotlightCard from '../shared/SpotlightCard';
+import Marquee from '../shared/Marquee';
 
 export default function Skills() {
   const skillCategories = [
@@ -79,8 +81,8 @@ export default function Skills() {
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-primary/6 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-violet-500/6 rounded-full blur-3xl" />
+        <div data-parallax="0.25" className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-primary/6 rounded-full blur-3xl" />
+        <div data-parallax="0.35" className="absolute -bottom-40 -left-40 w-96 h-96 bg-violet-500/6 rounded-full blur-3xl" />
         <div className="absolute inset-0 dot-grid opacity-[0.025] dark:opacity-[0.04]" />
       </div>
 
@@ -101,7 +103,7 @@ export default function Skills() {
                 className={`group ${ci % 2 === 0 ? 'slide-in-left' : 'fade-in-up'}`}
                 style={{ transitionDelay: `${ci * 100}ms` }}
               >
-                <div className="relative bg-white dark:bg-bg-dark rounded-2xl p-7 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-200/80 dark:border-gray-700/50 hover:border-transparent h-full overflow-hidden">
+                <SpotlightCard className="relative bg-white dark:bg-bg-dark rounded-2xl p-7 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-200/80 dark:border-gray-700/50 hover:border-transparent h-full overflow-hidden">
                   {/* Hover glow */}
                   <div
                     className={`absolute inset-0 rounded-2xl bg-linear-to-br ${category.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm scale-[1.02]`}
@@ -110,7 +112,7 @@ export default function Skills() {
                   <div className={`absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r ${category.gradient}`} />
 
                   {/* Header */}
-                  <div className="flex items-center gap-3 mb-6">
+                  <div className="relative z-10 flex items-center gap-3 mb-6">
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
                       style={{ background: `linear-gradient(135deg, ${category.glowColor}, ${category.glowColor})`, border: `1px solid ${category.borderColor}` }}
@@ -123,7 +125,7 @@ export default function Skills() {
                   </div>
 
                   {/* Skills as pills */}
-                  <div className="flex flex-wrap gap-2.5">
+                  <div className="relative z-10 flex flex-wrap gap-2.5">
                     {category.skills.map((skill, si) => {
                       const SkillIcon = skill.icon;
                       return (
@@ -147,7 +149,7 @@ export default function Skills() {
                       );
                     })}
                   </div>
-                </div>
+                </SpotlightCard>
               </div>
             );
           })}
@@ -167,24 +169,24 @@ export default function Skills() {
             <div className="h-px flex-1 max-w-16 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600" />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
+          <Marquee duration={28} gap="0.75rem">
             {tools.map((tool) => {
               const ToolIcon = tool.icon;
               return (
                 <span
                   key={tool.name}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-default transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-default transition-transform duration-300 hover:scale-105"
                   style={{
                     background: tool.bg,
                     border: `1px solid ${tool.color}35`,
                   }}
                 >
                   <ToolIcon className="w-4 h-4 shrink-0" style={{ color: tool.color }} />
-                  <span className="text-text-primary dark:text-text-primary-dark">{tool.name}</span>
+                  <span className="text-text-primary dark:text-text-primary-dark whitespace-nowrap">{tool.name}</span>
                 </span>
               );
             })}
-          </div>
+          </Marquee>
         </div>
       </div>
     </section>

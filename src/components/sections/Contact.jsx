@@ -1,5 +1,7 @@
 import { Mail, Github, Linkedin, MapPin, Phone } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
+import SpotlightCard from '../shared/SpotlightCard';
+import MagneticButton from '../shared/MagneticButton';
 
 export default function Contact() {
   const contactInfo = [
@@ -39,8 +41,8 @@ export default function Contact() {
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 -right-40 w-96 h-96 bg-emerald-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 -left-40 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl" />
+        <div data-parallax="0.28" className="absolute top-1/3 -right-40 w-96 h-96 bg-emerald-primary/5 rounded-full blur-3xl" />
+        <div data-parallax="0.2" className="absolute bottom-1/3 -left-40 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl" />
         <div className="absolute inset-0 dot-grid opacity-[0.025] dark:opacity-[0.04]" />
       </div>
 
@@ -56,13 +58,13 @@ export default function Contact() {
           {contactInfo.map((info, index) => {
             const Icon = info.icon;
             const inner = (
-              <div className="group flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border border-gray-200/80 dark:border-gray-700/50 hover:border-emerald-primary/40 transition-all duration-300 hover:shadow-lg h-full">
-                <div className={`w-12 h-12 bg-linear-to-br ${info.gradient} rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
+              <SpotlightCard className="group flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border border-gray-200/80 dark:border-gray-700/50 hover:border-emerald-primary/40 transition-all duration-300 hover:shadow-lg h-full">
+                <div className={`relative z-10 w-12 h-12 bg-linear-to-br ${info.gradient} rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
                   <Icon className="w-5 h-5 text-emerald-primary" />
                 </div>
-                <p className="text-xs text-text-muted font-semibold uppercase tracking-wider mb-1">{info.label}</p>
-                <p className="text-sm font-semibold text-text-primary dark:text-text-primary-dark leading-snug">{info.value}</p>
-              </div>
+                <p className="relative z-10 text-xs text-text-muted font-semibold uppercase tracking-wider mb-1">{info.label}</p>
+                <p className="relative z-10 text-sm font-semibold text-text-primary dark:text-text-primary-dark leading-snug">{info.value}</p>
+              </SpotlightCard>
             );
             return info.link ? (
               <a key={index} href={info.link} className="block fade-in-up" style={{ transitionDelay: `${index * 60}ms` }}>{inner}</a>
@@ -77,17 +79,19 @@ export default function Contact() {
           {socialLinks.map((social) => {
             const Icon = social.icon;
             return (
-              <a
+              <MagneticButton
+                as="a"
                 key={social.label}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className={`group flex items-center gap-2 px-5 py-2.5 bg-linear-to-r ${social.gradient} rounded-xl text-white text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg`}
+                strength={0.3}
+                className={`shimmer-btn group flex items-center gap-2 px-5 py-2.5 bg-linear-to-r ${social.gradient} rounded-xl text-white text-sm font-semibold hover:shadow-lg`}
               >
                 <Icon className="w-4 h-4" />
                 {social.label}
-              </a>
+              </MagneticButton>
             );
           })}
         </div>

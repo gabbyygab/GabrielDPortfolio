@@ -1,5 +1,6 @@
 import { GraduationCap, BookOpen, School, Quote, Star, Globe, Trophy, Medal } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
+import SpotlightCard from '../shared/SpotlightCard';
 
 export default function Education() {
   const timeline = [
@@ -64,8 +65,8 @@ export default function Education() {
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 -right-40 w-96 h-96 bg-emerald-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 -left-40 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl" />
+        <div data-parallax="0.28" className="absolute top-1/3 -right-40 w-96 h-96 bg-emerald-primary/5 rounded-full blur-3xl" />
+        <div data-parallax="0.2" className="absolute bottom-1/3 -left-40 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl" />
         <div className="absolute inset-0 dot-grid opacity-[0.025] dark:opacity-[0.04]" />
       </div>
 
@@ -187,11 +188,11 @@ export default function Education() {
                   </div>
 
                   {/* Card */}
-                  <div className={`group flex-1 ${!isLast ? 'mb-5' : ''} relative bg-white dark:bg-bg-dark rounded-2xl p-5 border border-gray-200/80 dark:border-gray-700/50 hover:border-transparent hover:shadow-xl transition-all duration-400 overflow-hidden`}>
+                  <SpotlightCard className={`group flex-1 ${!isLast ? 'mb-5' : ''} relative bg-white dark:bg-bg-dark rounded-2xl p-5 border border-gray-200/80 dark:border-gray-700/50 hover:border-transparent hover:shadow-xl transition-all duration-400 overflow-hidden`}>
                     <div className={`absolute inset-0 rounded-2xl bg-linear-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm scale-[1.02]`} />
                     <div className={`absolute top-0 left-0 bottom-0 w-0.5 bg-linear-to-b ${item.gradient} rounded-l-2xl`} />
 
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1.5">
+                    <div className="relative z-10 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1.5">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
                           <span className={`text-[10px] font-bold uppercase tracking-widest bg-linear-to-r ${item.gradient} bg-clip-text text-transparent`}>
@@ -212,13 +213,13 @@ export default function Education() {
                     </div>
 
                     {item.detail && (
-                      <p className="text-xs text-text-secondary dark:text-text-secondary-dark mt-1.5 leading-relaxed">
+                      <p className="relative z-10 text-xs text-text-secondary dark:text-text-secondary-dark mt-1.5 leading-relaxed">
                         {item.detail}
                       </p>
                     )}
 
                     {item.achievements && item.achievements.length > 0 && (
-                      <div className="mt-3 flex flex-col gap-1.5">
+                      <div className="relative z-10 mt-3 flex flex-col gap-1.5">
                         {item.achievements.map(({ icon: AchIcon, label, desc }, ai) => (
                           <div
                             key={ai}
@@ -232,7 +233,7 @@ export default function Education() {
                         ))}
                       </div>
                     )}
-                  </div>
+                  </SpotlightCard>
                 </div>
               );
             })}

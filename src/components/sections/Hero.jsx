@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import profileImage from '../../assets/GabPicture.jpg';
+import ParticleField from '../shared/ParticleField';
+import MagneticButton from '../shared/MagneticButton';
+import { useTilt } from '../../hooks/useTilt';
 
 const TYPING_PHRASES = [
   'Aspiring Full-Stack Developer',
@@ -53,6 +56,7 @@ function useTypingAnimation(phrases) {
 
 export default function Hero() {
   const typedText = useTypingAnimation(TYPING_PHRASES);
+  const photoTilt = useTilt({ max: 10, scale: 1.03, perspective: 800 });
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -67,11 +71,14 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-bg-dark"
     >
-      {/* Background blobs */}
+      {/* Interactive particle constellation */}
+      <ParticleField className="absolute inset-0 w-full h-full pointer-events-none opacity-70 dark:opacity-90" />
+
+      {/* Background blobs (subtle scroll parallax) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] rounded-full bg-emerald-primary/7 blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-teal-400/8 blur-3xl" />
-        <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-cyan-400/5 blur-3xl" />
+        <div data-parallax="0.25" className="absolute top-1/3 left-1/3 w-[600px] h-[600px] rounded-full bg-emerald-primary/7 blur-3xl [animation:aurora-drift_14s_ease-in-out_infinite]" />
+        <div data-parallax="0.4" className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-teal-400/8 blur-3xl [animation:aurora-drift_18s_ease-in-out_infinite_reverse]" />
+        <div data-parallax="0.15" className="absolute top-0 left-0 w-64 h-64 rounded-full bg-cyan-400/5 blur-3xl" />
         <div className="absolute inset-0 dot-grid opacity-[0.03] dark:opacity-[0.055]" />
       </div>
 
@@ -95,7 +102,7 @@ export default function Hero() {
               style={{ transitionDelay: '80ms' }}
             >
               John{' '}
-              <span className="bg-linear-to-r from-emerald-primary via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="gradient-text-anim bg-linear-to-r from-emerald-primary via-teal-400 to-cyan-400 bg-clip-text text-transparent">
                 Gabriel
               </span>
               <br />
@@ -124,26 +131,27 @@ export default function Hero() {
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-10 slide-in-left"
               style={{ transitionDelay: '270ms' }}
             >
-              <button
+              <MagneticButton
                 onClick={() => scrollToSection('projects')}
-                className="group inline-flex items-center gap-2 px-8 py-3.5 bg-linear-to-r from-emerald-primary via-emerald-500 to-teal-500 hover:from-emerald-dark hover:to-teal-400 text-white rounded-2xl font-semibold transition-all duration-300 shadow-lg shadow-emerald-primary/25 hover:shadow-xl hover:shadow-emerald-primary/35 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
+                className="shimmer-btn group inline-flex items-center gap-2 px-8 py-3.5 bg-linear-to-r from-emerald-primary via-emerald-500 to-teal-500 hover:from-emerald-dark hover:to-teal-400 text-white rounded-2xl font-semibold shadow-lg shadow-emerald-primary/25 hover:shadow-xl hover:shadow-emerald-primary/35 w-full sm:w-auto justify-center"
               >
                 View Projects
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-              </button>
-              <button
+              </MagneticButton>
+              <MagneticButton
                 onClick={() => scrollToSection('contact')}
-                className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-emerald-primary/60 text-emerald-primary hover:border-emerald-primary hover:bg-emerald-primary hover:text-white rounded-2xl font-semibold transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
+                strength={0.3}
+                className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-emerald-primary/60 text-emerald-primary hover:border-emerald-primary hover:bg-emerald-primary hover:text-white rounded-2xl font-semibold w-full sm:w-auto justify-center"
               >
                 Contact Me
-              </button>
+              </MagneticButton>
             </div>
 
           </div>
 
           {/* ── Right: Profile image ── */}
           <div className="shrink-0 order-1 lg:order-2 slide-in-right" style={{ transitionDelay: '100ms' }}>
-            <div className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
+            <div ref={photoTilt} className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
               {/* Outer glow */}
               <div className="absolute -inset-4 rounded-full bg-emerald-primary/15 blur-2xl" />
               {/* Spinning ring */}

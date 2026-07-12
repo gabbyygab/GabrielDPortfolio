@@ -34,6 +34,34 @@
   50%       { opacity: 0; }
 }
 
+/* Infinite marquee (animated-component-libraries pattern).
+   Content-width copies laid out with a fixed gap. Each copy shifts by exactly
+   its own width + the gap, so the next identical copy lands precisely where it
+   began → seamless loop with tight, consistent spacing. The component renders
+   just enough copies to always cover the viewport. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - var(--marquee-gap, 1rem))); }
+}
+
+/* Shimmer sweep for CTA buttons (Magic UI ShimmerButton pattern) */
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(250%)  skewX(-20deg); }
+}
+
+/* Slow-drift aurora gradient for section accents */
+@keyframes aurora-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(3%, -4%, 0) scale(1.08); }
+}
+
+/* Animated gradient text sheen */
+@keyframes gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
 /* ── Base ───────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
@@ -136,3 +164,105 @@ textarea:focus-visible {
 /* ── Form Placeholders ──────────────────────────────────────── */
 .dark input::placeholder,
 .dark textarea::placeholder { color: #4b6358; }
+
+/* ── Marquee (infinite scroll) ──────────────────────────────── */
+.marquee-track {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  animation: marquee var(--marquee-duration, 32s) linear infinite;
+  will-change: transform;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-pause:hover .marquee-group { animation-play-state: paused; }
+
+/* ── Spotlight card (pointer-follow radial glow) ────────────── */
+.spotlight-card { position: relative; }
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    280px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(16, 185, 129, 0.14),
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight-card:hover::before { opacity: 1; }
+.dark .spotlight-card::before {
+  background: radial-gradient(
+    280px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(52, 211, 153, 0.16),
+    transparent 65%
+  );
+}
+
+/* ── Shimmer button sweep ───────────────────────────────────── */
+.shimmer-btn { position: relative; overflow: hidden; }
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: translateX(-150%) skewX(-20deg);
+  pointer-events: none;
+}
+.shimmer-btn:hover::after { animation: shimmer-sweep 0.9s ease; }
+
+/* ── Tilt element ───────────────────────────────────────────── */
+.tilt-el {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* ── Scroll progress bar ────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #10b981, #34d399, #06b6d4);
+  z-index: 60;
+  will-change: transform;
+}
+
+/* Animated gradient text */
+.gradient-text-anim {
+  background-size: 200% auto;
+  animation: gradient-pan 6s ease infinite;
+}
+
+/* ── Accessibility: honor reduced motion ────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-in-up, .fade-in, .scale-in, .slide-in-left, .slide-in-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .marquee-group { animation: none !important; }
+}

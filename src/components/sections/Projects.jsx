@@ -235,10 +235,12 @@ export default function Projects() {
       {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
+          data-parallax="0.3"
           className="absolute top-1/4 -left-40 w-[500px] h-[500px] rounded-full blur-3xl opacity-30 transition-all duration-700"
           style={{ background: `radial-gradient(circle, ${project.accentColor}20 0%, transparent 70%)` }}
         />
         <div
+          data-parallax="0.2"
           className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 transition-all duration-700"
           style={{ background: `radial-gradient(circle, ${project.accentColor}15 0%, transparent 70%)` }}
         />

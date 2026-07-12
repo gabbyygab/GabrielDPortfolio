@@ -1,5 +1,7 @@
 import { GraduationCap, Target, Code2, Trophy, Briefcase, Calendar, Coffee, Lightbulb, Rocket } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
+import CountUp from '../shared/CountUp';
+import SpotlightCard from '../shared/SpotlightCard';
 
 export default function About() {
   const stats = [
@@ -90,8 +92,8 @@ export default function About() {
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 -right-40 w-96 h-96 bg-emerald-primary/4 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 -left-40 w-96 h-96 bg-violet-500/4 rounded-full blur-3xl" />
+        <div data-parallax="0.3" className="absolute top-20 -right-40 w-96 h-96 bg-emerald-primary/4 rounded-full blur-3xl" />
+        <div data-parallax="0.2" className="absolute bottom-20 -left-40 w-96 h-96 bg-violet-500/4 rounded-full blur-3xl" />
         <div className="absolute inset-0 dot-grid opacity-[0.025] dark:opacity-[0.04]" />
       </div>
 
@@ -162,7 +164,7 @@ export default function About() {
             {stats.map((stat, i) => {
               const Icon = stat.icon;
               return (
-                <div
+                <SpotlightCard
                   key={i}
                   className="group relative rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-default"
                   style={{
@@ -172,7 +174,7 @@ export default function About() {
                 >
                   {/* Icon */}
                   <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
+                    className="relative z-10 w-10 h-10 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
                     style={{ background: stat.bg, border: `1px solid ${stat.border}` }}
                   >
                     <Icon className="w-5 h-5" style={{ color: stat.color }} />
@@ -180,14 +182,14 @@ export default function About() {
 
                   {/* Number */}
                   <p
-                    className="text-4xl font-bold leading-none mb-2"
+                    className="relative z-10 text-4xl font-bold leading-none mb-2"
                     style={{ color: stat.color }}
                   >
-                    {stat.value}
+                    <CountUp value={stat.value} />
                   </p>
 
                   {/* Label */}
-                  <p className="text-sm text-text-secondary dark:text-text-secondary-dark font-medium leading-snug">
+                  <p className="relative z-10 text-sm text-text-secondary dark:text-text-secondary-dark font-medium leading-snug">
                     {stat.label}
                   </p>
 
@@ -196,7 +198,7 @@ export default function About() {
                     className="absolute top-0 right-0 w-16 h-16 rounded-bl-[2rem] opacity-40 pointer-events-none"
                     style={{ background: `radial-gradient(circle at top right, ${stat.color}30, transparent 70%)` }}
                   />
-                </div>
+                </SpotlightCard>
               );
             })}
           </div>
@@ -208,7 +210,7 @@ export default function About() {
           {highlights.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div
+              <SpotlightCard
                 key={index}
                 className="group relative p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border border-gray-200/80 dark:border-gray-700/50 hover:border-transparent transition-all duration-400 overflow-hidden hover:shadow-xl"
                 style={{ transitionDelay: `${index * 60}ms` }}
@@ -226,7 +228,7 @@ export default function About() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </SpotlightCard>
             );
           })}
         </div>
